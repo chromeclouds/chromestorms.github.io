@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeff Hill | Gameplay Programmer</title>
+
+    <style>
+        :root {
+            --bg: #111111;
+            --panel: #1c1c1c;
+            --panel-light: #252525;
+            --text: #eeeeee;
+            --muted: #b8b8b8;
+            --accent: #c9a7ff;
+            --accent-dark: #351f4f;
+            --border: #333333;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+        }
+
+        header {
+            padding: 80px 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #151515, var(--accent-dark));
+        }
+
+            header h1 {
+                margin: 0;
+                font-size: 52px;
+                letter-spacing: 1px;
+            }
+
+            header h2 {
+                margin-top: 10px;
+                color: var(--accent);
+                font-weight: normal;
+            }
+
+            header p {
+                max-width: 800px;
+                margin: 22px auto;
+                font-size: 18px;
+                color: #f2f2f2;
+            }
+
+        nav {
+            margin-top: 25px;
+        }
+
+            nav a {
+                display: inline-block;
+                margin: 8px;
+                padding: 10px 16px;
+                color: white;
+                text-decoration: none;
+                border: 1px solid var(--accent);
+                border-radius: 6px;
+                transition: 0.2s ease;
+            }
+
+                nav a:hover {
+                    background: var(--accent);
+                    color: #121212;
+                }
+
+        main {
+            max-width: 1100px;
+            margin: auto;
+            padding: 45px 20px;
+        }
+
+        section {
+            margin-bottom: 55px;
+        }
+
+        h2 {
+            color: var(--accent);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 8px;
+            margin-bottom: 22px;
+        }
+
+        h3 {
+            margin-bottom: 8px;
+        }
+
+        a {
+            color: var(--accent);
+        }
+
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 24px;
+        }
+
+        .card {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 24px;
+        }
+
+        .project {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .project-featured {
+            border-color: var(--accent);
+            background: linear-gradient(135deg, #1c1c1c, #241d2f);
+        }
+
+        .project p {
+            color: var(--muted);
+        }
+
+        .project strong {
+            color: var(--text);
+        }
+
+        .project ul {
+            padding-left: 22px;
+        }
+
+        .project li {
+            margin-bottom: 8px;
+        }
+
+        .tag-row {
+            margin: 15px 0;
+        }
+
+        .tag {
+            display: inline-block;
+            background: var(--panel-light);
+            border: 1px solid #444444;
+            border-radius: 20px;
+            padding: 6px 11px;
+            margin: 4px;
+            font-size: 14px;
+            color: #dddddd;
+        }
+
+        .project-links {
+            margin-top: 18px;
+        }
+
+            .project-links a {
+                display: inline-block;
+                margin-right: 12px;
+                margin-bottom: 8px;
+                padding: 8px 12px;
+                border: 1px solid var(--accent);
+                border-radius: 6px;
+                text-decoration: none;
+            }
+
+                .project-links a:hover {
+                    background: var(--accent);
+                    color: #121212;
+                }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .skills-card {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+            .skills-card h3 {
+                color: var(--accent);
+                margin-top: 0;
+            }
+
+            .skills-card ul {
+                padding-left: 20px;
+                color: var(--muted);
+            }
+
+        .experience-list {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 24px;
+        }
+
+            .experience-list li {
+                margin-bottom: 10px;
+            }
+
+        footer {
+            text-align: center;
+            color: #aaaaaa;
+            border-top: 1px solid var(--border);
+            padding: 25px;
+        }
+
+
+        .hero-links {
+            margin-top: 22px;
+        }
+
+        .project-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+            margin: 20px 0;
+        }
+
+        .project-gallery a {
+            display: block;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: #0d0d0d;
+        }
+
+        .project-gallery img {
+            display: block;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            transition: transform 0.2s ease;
+        }
+
+        .project-gallery a:hover img {
+            transform: scale(1.02);
+        }
+
+        .caption {
+            margin: 7px 0 0;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .project-video {
+            margin: 20px 0;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            background: #0d0d0d;
+        }
+
+        .project-video video {
+            display: block;
+            width: 100%;
+            height: auto;
+            background: #000000;
+        }
+
+        .resume-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .resume-card {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 22px;
+        }
+
+        .resume-card h3 {
+            color: var(--accent);
+            margin-top: 0;
+        }
+
+        @media (max-width: 850px) {
+            header h1 {
+                font-size: 40px;
+            }
+
+            .intro-grid,
+            .skills-grid,
+            .resume-grid,
+            .project-gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Jeff Hill</h1>
+        <h2>Gameplay Programmer | Unreal Engine Developer | AI Systems Programmer</h2>
+
+        <p>
+            I build gameplay systems, enemy AI, interaction mechanics, and Unreal Engine tools with a focus on
+            clean C++ architecture, designer-friendly Blueprints, and playable systems that can be tested,
+            tuned, and expanded by a team.
+        </p>
+
+        <nav>
+            <a href="#projects">Projects</a>
+            <a href="#experience">Experience</a>
+            <a href="#skills">Skills</a>
+            <a href="#contact">Contact</a>
+            <a href="https://github.com/chromeclouds" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://www.linkedin.com/in/jeffhill115/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="intro-grid">
+            <div class="card">
+                <h2>About Me</h2>
+
+                <p>
+                    I am a game programming student focused on Unreal Engine, C++, gameplay systems,
+                    enemy AI, player interaction, and technical implementation for games and interactive
+                    experiences. My work often sits between programming and design: I like building systems
+                    that work reliably in code while still being easy for designers and teammates to adjust
+                    in Blueprint.
+                </p>
+
+                <p>
+                    My recent and planned projects include Beacon Manor, a first-person horror game with
+                    flashlight-based ghost mechanics; Road Trippin', an Unreal Engine game planned as part of
+                    my larger Meridian IP; a C++ inventory application for managing store inventory and stock
+                    transfers; and a custom Unreal Engine plugin for VR eye tracking features including dynamic
+                    foveated rendering, eye gaze, and pupil dilation support.
+                </p>
+            </div>
+
+            <div class="card">
+                <h2>Focus Areas</h2>
+                <p>
+                    Gameplay Programming<br>
+                    Enemy AI<br>
+                    Unreal Engine C++<br>
+                    Blueprint-Exposed Systems<br>
+                    Player Interaction<br>
+                    VR / Eye Tracking Tools<br>
+                    Technical Problem Solving
+                </p>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Featured Projects</h2>
+
+            <div class="project project-featured">
+                <h3>Beacon Manor</h3>
+
+                <p>
+                    <strong>Role:</strong> Gameplay Programmer / AI Systems Programmer / Interaction Systems / Map Development<br>
+                    <strong>Engine:</strong> Unreal Engine 5<br>
+                    <strong>Tools:</strong> C++, Blueprints, Perforce, Jira
+                </p>
+
+                <div class="tag-row">
+                    <span class="tag">Unreal Engine 5</span>
+                    <span class="tag">C++</span>
+                    <span class="tag">Blueprints</span>
+                    <span class="tag">Enemy AI</span>
+                    <span class="tag">Gameplay Systems</span>
+                    <span class="tag">Horror</span>
+                    <span class="tag">Perforce</span>
+                </div>
+
+                <p>
+                    Beacon Manor is a first-person horror mystery game where the player explores a haunted manor
+                    while using a flashlight as a survival tool, investigation tool, and puzzle-solving mechanic.
+                    The project focuses on tension, resource management, ghost encounters, environmental interaction,
+                    and a guided vertical slice through a haunted manor.
+                </p>
+
+                <ul>
+                    <li>Implemented ghost AI behavior states including idle, patrol, chase, attack, stunned, frozen, and return-to-patrol.</li>
+                    <li>Built flashlight-based enemy reactions, allowing ghosts to be slowed, stunned, or frozen based on flashlight behavior.</li>
+                    <li>Created designer-tunable Blueprint settings for ghost colors, behavior types, patrol points, detection ranges, attack timing, and flashlight reactions.</li>
+                    <li>Developed battery drain, battery pickup, flashlight reload, lens pickup, and flashlight color cycling support.</li>
+                    <li>Supported player interaction systems including keys, doors, pickup prompts, locked-door feedback, health pickups, and objective updates.</li>
+                    <li>Worked on map development and playable flow for areas including the library, pool, bathroom, kitchen, dining area, greenhouse entrance, and secret room pathing.</li>
+                    <li>Collaborated through Perforce and Jira while helping prepare the project for milestone builds and vertical slice submission.</li>
+                </ul>
+
+
+                <div class="project-gallery">
+                    <a href="media/BeaconManor_WatchHUD.png" target="_blank" rel="noopener noreferrer">
+                        <img src="media/BeaconManor_WatchHUD.png" alt="Beacon Manor watch status HUD during gameplay">
+                    </a>
+                    <a href="media/BeaconManor_GhostSettings.png" target="_blank" rel="noopener noreferrer">
+                        <img src="media/BeaconManor_GhostSettings.png" alt="Beacon Manor designer-tunable ghost AI settings in Unreal Engine">
+                    </a>
+                    <a href="media/BeaconManor_FlashlightSettings.png" target="_blank" rel="noopener noreferrer">
+                        <img src="media/BeaconManor_FlashlightSettings.png" alt="Beacon Manor flashlight gameplay settings in Unreal Engine">
+                    </a>
+                </div>
+                <p class="caption">Gameplay HUD and designer-facing Unreal Engine settings. Click an image to view it full size.</p>
+
+                <div class="project-video">
+                    <video controls preload="metadata">
+                        <source src="media/BeaconManor_CheckWatch.mp4" type="video/mp4">
+                        Your browser does not support embedded video.
+                    </video>
+                </div>
+                <p class="caption">Diegetic watch demonstration showing the player checking the physical watch display in game.</p>
+
+                <div class="project-links">
+                    <a href="https://youtu.be/pozw6jmUYsU" target="_blank" rel="noopener noreferrer">Gameplay Video</a>
+                    <a href="https://dangernoodlestudios.itch.io/beaconmanor" target="_blank" rel="noopener noreferrer">Build / Itch.io Page</a>
+                </div>
+            </div>
+
+            <div class="project">
+                <h3>Custom Unreal Engine Plugin — DFR, Eye Gaze, and Pupil Dilation</h3>
+
+                <p>
+                    <strong>Role:</strong> Plugin Developer / Unreal Engine Programmer<br>
+                    <strong>Engine:</strong> Unreal Engine<br>
+                    <strong>Hardware / Software:</strong> Bigscreen Beyond 2e, fork of Babellonia software<br>
+                    <strong>Tools:</strong> C++, Unreal Engine Plugin Development
+                </p>
+
+                <div class="tag-row">
+                    <span class="tag">Unreal Engine Plugin</span>
+                    <span class="tag">C++</span>
+                    <span class="tag">VR</span>
+                    <span class="tag">Eye Tracking</span>
+                    <span class="tag">Dynamic Foveated Rendering</span>
+                    <span class="tag">Pupil Dilation</span>
+                    <span class="tag">Tool Development</span>
+                </div>
+
+                <p>
+                    A custom Unreal Engine plugin designed to support dynamic foveated rendering, eye gaze data,
+                    and pupil dilation data in Unreal Engine using the Bigscreen Beyond 2e and a fork of the
+                    Babellonia software. The goal of the project is to expose eye-tracking-related data in a way
+                    that can be used by Unreal systems, gameplay code, debugging tools, and future VR interaction
+                    features.
+                </p>
+
+                <ul>
+                    <li>Worked on plugin-side Unreal Engine integration for eye gaze and pupil dilation data.</li>
+                    <li>Explored support for dynamic foveated rendering workflows in Unreal Engine.</li>
+                    <li>Focused on exposing technical data in a usable way for future gameplay, VR interaction, and performance-focused systems.</li>
+                    <li>Used a forked software workflow to connect external eye-tracking functionality with Unreal Engine systems.</li>
+                    <li>Built the project as a reusable Unreal plugin rather than a one-off project-specific implementation.</li>
+                </ul>
+            </div>
+
+            <div class="project">
+                <h3>Road Trippin'</h3>
+
+                <p>
+                    <strong>Role:</strong> Game Designer / Gameplay Programmer / Worldbuilding<br>
+                    <strong>Status:</strong> Planned Unreal Engine Game<br>
+                    <strong>Engine:</strong> Unreal Engine<br>
+                    <strong>Tools:</strong> C++, Blueprints, Blender
+                </p>
+
+                <div class="tag-row">
+                    <span class="tag">Unreal Engine</span>
+                    <span class="tag">C++</span>
+                    <span class="tag">Blueprints</span>
+                    <span class="tag">Blender</span>
+                    <span class="tag">Game Design</span>
+                    <span class="tag">Narrative Design</span>
+                    <span class="tag">Meridian IP</span>
+                    <span class="tag">Planned Project</span>
+                </div>
+
+                <p>
+                    Road Trippin' is a planned Unreal Engine game set inside my larger Meridian IP. The game follows
+                    a child in the back seat during a family road trip, blending grounded road-trip memories with
+                    stylized imagination gameplay, strange rest stops, cryptid stories, vending-machine mystery, and
+                    the larger corporate-horror world of Meridian.
+                </p>
+
+                <p>
+                    Development has not started yet, but the game has been heavily planned as part of a larger connected
+                    IP. The broader Meridian project includes Road Trippin', a planned prequel, and a second connected
+                    game that expands the setting, characters, vending-machine portal systems, and Meridian's role in
+                    the world.
+                </p>
+
+                <ul>
+                    <li>Designed the core structure around a back-seat hub, window-based gameplay, side-scrolling imagination sequences, boss encounters, and rest-stop progression.</li>
+                    <li>Planned Unreal gameplay systems for first-person back-seat interaction, look-based object inspection, interact prompts, road segments, obstacles, collectibles, and progression unlocks.</li>
+                    <li>Developed the larger Meridian IP framework connecting Road Trippin' to a prequel and a second game within the same universe.</li>
+                    <li>Outlined recurring characters, cryptid story encounters, vending-machine mystery, corporate-horror lore, and long-term narrative hooks.</li>
+                    <li>Planned the project around Unreal Engine C++, Blueprint implementation, and Blender modeling for custom assets and visual development.</li>
+                </ul>
+            </div>
+
+            <div class="project">
+                <h3>Inventory Application</h3>
+
+                <p>
+                    <strong>Role:</strong> Programmer / Application Developer<br>
+                    <strong>Project Type:</strong> Inventory and Stock Transfer Application<br>
+                    <strong>Tools:</strong> C++, wxWidgets, Visual Studio
+                </p>
+
+                <div class="tag-row">
+                    <span class="tag">C++</span>
+                    <span class="tag">wxWidgets</span>
+                    <span class="tag">Visual Studio</span>
+                    <span class="tag">Inventory Systems</span>
+                    <span class="tag">Stock Transfers</span>
+                    <span class="tag">Application Development</span>
+                    <span class="tag">Data Handling</span>
+                </div>
+
+                <p>
+                    A C++ inventory application designed to manage inventory records and stock transfers between
+                    stores. The project focuses on practical business-style software development, structured data,
+                    clear user workflows, and reliable item management outside of a game engine.
+                </p>
+
+                <ul>
+                    <li>Planned inventory management features for tracking items, quantities, and store-to-store stock movement.</li>
+                    <li>Focused on building a practical desktop application workflow using C++, wxWidgets, and Visual Studio.</li>
+                    <li>Designed the application around real inventory needs instead of a simple class demo.</li>
+                    <li>Worked with structured data, user input, validation, and clear presentation of stored information.</li>
+                    <li>Built experience that transfers into gameplay inventories, editor tools, item databases, and other data-driven systems.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>Additional Systems</h2>
+
+            <div class="project">
+                <h3>Ghost AI System</h3>
+
+                <p>
+                    A reusable Unreal Engine enemy AI system with patrol areas, patrol points, perception-based chase
+                    behavior, attack cooldowns, animation state support, flashlight reactions, and designer-tunable
+                    settings.
+                </p>
+
+                <ul>
+                    <li>Created AI states for patrol, chase, attack, stun, freeze, and return behavior.</li>
+                    <li>Supported patrol points, patrol areas, random roaming, and last-known-position behavior.</li>
+                    <li>Exposed variables for tuning ghost detection, attack range, damage, cooldowns, and flashlight reactions.</li>
+                </ul>
+            </div>
+
+            <div class="project">
+                <h3>Flashlight Gameplay System</h3>
+
+                <p>
+                    A gameplay system where the flashlight supports toggling, battery drain, stored batteries,
+                    battery reload, color switching, lens pickups, flashbang behavior, and enemy reactions based
+                    on flashlight color.
+                </p>
+
+                <ul>
+                    <li>Implemented flashlight toggle, battery drain, reload behavior, and pickup support.</li>
+                    <li>Added color-based lens behavior for puzzle and enemy interaction support.</li>
+                    <li>Connected flashlight state to enemy AI reactions including slow, stun, and freeze behavior.</li>
+                </ul>
+            </div>
+
+            <div class="project">
+                <h3>Light Control Rig System</h3>
+
+                <p>
+                    A designer-facing lighting system for horror spaces with flicker behavior, trigger scares,
+                    power failure effects, color shifts, and emissive material control.
+                </p>
+
+                <ul>
+                    <li>Built lighting controls intended for atmosphere, scares, and readable player feedback.</li>
+                    <li>Supported adjustable settings for designers to tune horror lighting without rewriting code.</li>
+                    <li>Focused on making environmental lighting part of the gameplay and presentation flow.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2>Technical Skills</h2>
+
+            <div class="skills-grid">
+                <div class="skills-card">
+                    <h3>Programming</h3>
+                    <ul>
+                        <li>C++</li>
+                        <li>Object-Oriented Programming</li>
+                        <li>Gameplay Systems</li>
+                        <li>Debugging</li>
+                        <li>Data-Driven Design</li>
+                    </ul>
+                </div>
+
+                <div class="skills-card">
+                    <h3>Unreal Engine</h3>
+                    <ul>
+                        <li>Unreal Engine 5</li>
+                        <li>Blueprints</li>
+                        <li>Actor and Component Systems</li>
+                        <li>Animation Blueprints</li>
+                        <li>AI Perception</li>
+                        <li>Unreal Plugin Development</li>
+                    </ul>
+                </div>
+
+                <div class="skills-card">
+                    <h3>Production Tools</h3>
+                    <ul>
+                        <li>Perforce</li>
+                        <li>Jira</li>
+                        <li>GitHub</li>
+                        <li>Visual Studio</li>
+                        <li>Blender</li>
+                        <li>Team Collaboration</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <h2>Experience & Education</h2>
+
+            <div class="resume-grid">
+                <div class="resume-card">
+                    <h3>Project Experience</h3>
+                    <p><strong>Beacon Manor — Gameplay Programmer</strong></p>
+                    <p>Team-based Unreal Engine 5 capstone project using C++, Blueprints, Perforce, and Jira. Work includes gameplay systems, ghost AI, flashlight mechanics, interaction systems, scripted encounters, HUD implementation, and level-support programming.</p>
+                </div>
+
+                <div class="resume-card">
+                    <h3>Education</h3>
+                    <p><strong>Full Sail University</strong></p>
+                    <p>Bachelor's Degree in Game Development — In Progress</p>
+                    <p>Coursework and portfolio work emphasize C++, Unreal Engine, gameplay programming, AI, software development, debugging, and team production.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>What I Bring to a Team</h2>
+
+            <ul class="experience-list">
+                <li>I can build gameplay systems in C++ while keeping them adjustable through Blueprint-exposed variables.</li>
+                <li>I am comfortable debugging systems across C++, Blueprints, collision, animation, input, and level setup.</li>
+                <li>I think about how designers and teammates will use the systems I build, not just whether the code works once.</li>
+                <li>I have experience working in source control and task tracking during a team-based Unreal Engine project.</li>
+                <li>I enjoy solving technical gameplay problems, especially AI behavior, interaction systems, player-facing mechanics, and Unreal Engine tools.</li>
+            </ul>
+        </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+
+            <p>
+                I am currently building my portfolio around gameplay programming, Unreal Engine development,
+                AI systems, technical tools, and original game IP development. I am interested in gameplay programming,
+                Unreal Engine, AI, and systems-focused opportunities.
+            </p>
+
+            <p>Email: <a href="mailto:cliffjkhill@yahoo.com">cliffjkhill@yahoo.com</a></p>
+            <p>GitHub: <a href="https://github.com/chromeclouds" target="_blank">https://github.com/chromeclouds</a></p>
+            <p>LinkedIn: <a href="https://www.linkedin.com/in/jeffhill115/" target="_blank">https://www.linkedin.com/in/jeffhill115/</a></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Jeff Hill</p>
+    </footer>
+</body>
+</html>
